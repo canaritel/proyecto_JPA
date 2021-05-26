@@ -211,4 +211,29 @@ public class JuegoJpaController implements Serializable {
         return respuesta;
     }
 
+    public boolean existeAllJuego(Juego juego) {
+        //Creamos nuestra propia QUERY para conocer si existe algún registro con los mismos datos
+        String QUERY = "SELECT j FROM Juego j WHERE j.titulo = :titulo AND j.sistemaOperativo = :sistemaOperativo";
+               // + " AND j.fechaJuego = :fechaJuego AND j.precio = :precio";
+
+        EntityManager em = getEntityManager();
+        List<Juego> juegotmp = new ArrayList<>();
+        boolean respuesta = false;
+        try {
+            TypedQuery<Juego> consulta = em.createQuery(QUERY, Juego.class);    //preparamos la consulta QUERY a realizar
+            consulta.setParameter("titulo", juego.getTitulo());    //indico el campo y la cadena a buscar 
+            consulta.setParameter("sistemaOperativo", juego.getSistemaOperativo()); 
+            consulta.setParameter("fechaJuego", juego.getFechaJuego()); 
+            consulta.setParameter("precio", juego.getPrecio()); 
+            juegotmp = consulta.getResultList();     //guardo la consulta realiza en un objeto de tipo ArrayList
+            if (!juegotmp.isEmpty()) {       //si el resultado es vacio es que no existe
+                respuesta = true;
+            }
+        } catch (Exception e) {
+        } finally {
+            em.close();
+        }
+        return respuesta;
+    }
+
 }

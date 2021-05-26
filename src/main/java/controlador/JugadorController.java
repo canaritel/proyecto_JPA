@@ -362,7 +362,7 @@ public class JugadorController implements Initializable {
                 MensajeFX.printTexto("Existe un registro con los mismos datos", "WARNING", obtenPosicionX_Y());
             }
         } else {
-            MensajeFX.printTexto("Los siguientes campos están vacíos:\n" + camposPendientes, "WARNING", obtenPosicionX_Y());
+            MensajeFX.printTexto("Los siguientes campos están incorrectos:\n" + camposPendientes, "WARNING", obtenPosicionX_Y());
         }
     }
 
@@ -378,7 +378,7 @@ public class JugadorController implements Initializable {
                 MensajeFX.printTexto("Existe un registro con los mismos datos", "WARNING", obtenPosicionX_Y());
             }
         } else {
-            MensajeFX.printTexto("Los siguientes campos están vacíos:\n" + camposPendientes, "WARNING", obtenPosicionX_Y());
+            MensajeFX.printTexto("Los siguientes campos están incorrectos:\n" + camposPendientes, "WARNING", obtenPosicionX_Y());
         }
     }
 

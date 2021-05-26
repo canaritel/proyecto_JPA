@@ -355,20 +355,6 @@ public class JuegoController implements Initializable {
         cmbDistribuidor.setItems(obsDistribuye);
     }
 
-    private void eliminaJuego() {
-        if (!textCampo1.getText().isEmpty()) {
-            eliminarRegistroJuego();
-            limpiarCampos();
-            actualizaListaJuegos();
-        } else {
-            MensajeFX.printTexto("Debe seleccionar un registro de la tabla", "WARNING", obtenPosicionX_Y());
-        }
-    }
-
-    private void editaJuego() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
     private void creaJuego() {
         if (validarCampos()) {
             this.convertirObjeto();
@@ -378,10 +364,36 @@ public class JuegoController implements Initializable {
                 cancelarRegistro();
                 actualizaListaJuegos();
             } else {
-                MensajeFX.printTexto("Existe un registro con los mismos datos", "WARNING", obtenPosicionX_Y());
+                MensajeFX.printTexto("Existe un registro con el mismo Título", "WARNING", obtenPosicionX_Y());
             }
         } else {
             MensajeFX.printTexto("Los siguientes campos están incorrectos:\n" + camposPendientes, "WARNING", obtenPosicionX_Y());
+        }
+    }
+
+    private void editaJuego() {
+        if (validarCampos()) {
+            this.convertirObjeto();
+            //    if (!juegoDAO.existeAllJuego(objetoJuego)) {
+            editarRegistroJuego();
+            limpiarCampos();
+            cancelarRegistro();
+            actualizaListaJuegos();
+            //   } else {
+            //     MensajeFX.printTexto("Existe un registro con los mismos datos", "WARNING", obtenPosicionX_Y());
+            // }
+        } else {
+            MensajeFX.printTexto("Los siguientes campos están incorrectos:\n" + camposPendientes, "WARNING", obtenPosicionX_Y());
+        }
+    }
+
+    private void eliminaJuego() {
+        if (!textCampo1.getText().isEmpty()) {
+            eliminarRegistroJuego();
+            limpiarCampos();
+            actualizaListaJuegos();
+        } else {
+            MensajeFX.printTexto("Debe seleccionar un registro de la tabla", "WARNING", obtenPosicionX_Y());
         }
     }
 
@@ -429,9 +441,10 @@ public class JuegoController implements Initializable {
     }
 
     public void convertirObjeto() {
-        objetoJuego = new Juego();
-
-        objetoJuego.setIdJuego(1);
+        if (objetoJuego == null) {
+            objetoJuego = new Juego();
+        }
+        //objetoJuego.setIdJuego();
         objetoJuego.setTitulo(textCampo1.getText().trim());
         objetoJuego.setSistemaOperativo(cmbSO.getValue());
         objetoJuego.setUsuario(cmbJugador.getValue());
@@ -448,6 +461,19 @@ public class JuegoController implements Initializable {
             MensajeFX.printTexto("Registro grabado correctamente", "INFO", obtenPosicionX_Y());
         } catch (Exception e) {
             System.err.println("Error al grabar el registro " + e);
+        }
+    }
+
+    private void editarRegistroJuego() {
+        try {
+            juegoDAO.edit(objetoJuego);
+            MensajeFX.printTexto("Registro editado correctamente", "INFO", obtenPosicionX_Y());
+        } catch (NonexistentEntityException ex) {
+            MensajeFX.printTexto("Error al editar el registro", "ERROR", obtenPosicionX_Y());
+            System.err.println("No existe el registro a editar " + ex);
+        } catch (Exception ex) {
+            MensajeFX.printTexto("Error al editar el registro", "ERROR", obtenPosicionX_Y());
+            System.err.println("Error al editar registro " + ex);
         }
     }
 

@@ -274,9 +274,9 @@ public class DistribuyeJpaController implements Serializable {
             TypedQuery<Distribuye> consulta = em.createQuery(QUERY, Distribuye.class);    //preparamos la consulta QUERY a realizar
             consulta.setParameter("idDistribuidor", idDistribuidor);    //indico el campo y la cadena a buscar 
             distribuyetmp = consulta.getSingleResult(); //guardo la consulta realiza en un objeto de tipo Array de Usuario
-           // if (!distribuyetmp.isEmpty()) {          //si el resultado es vacio es que no existe
-                //  respuesta = true;
-           // }
+            // if (!distribuyetmp.isEmpty()) {          //si el resultado es vacio es que no existe
+            //  respuesta = true;
+            // }
         } catch (Exception e) {
         } finally {
             em.close();
