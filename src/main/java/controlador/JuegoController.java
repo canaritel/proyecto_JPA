@@ -7,6 +7,7 @@ import dao.exceptions.NonexistentEntityException;
 import entidades.Distribuye;
 import entidades.Juego;
 import entidades.Usuario;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.time.LocalDate;
@@ -18,7 +19,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DatePicker;
@@ -27,11 +31,14 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import modelo.MensajeFX;
@@ -104,6 +111,8 @@ public class JuegoController implements Initializable {
     @FXML
     private TableColumn<Juego, LocalDate> colFechaJuego;
 
+    private Stage stage;
+    private Scene scene;
     private String camposPendientes; //para guardar los campos no validados
     private ObservableList<Juego> itemsJuegos;  //creamos una lista de tipo observableList, se usará para la tabla
     private ObservableList<Juego> itemsFiltro; //para guardar el resultado de los filtros de búsquedas
@@ -210,7 +219,12 @@ public class JuegoController implements Initializable {
         if (evt.equals(iconoInfoDistribuidor)) {
             ventabaPopupDistribuidor();
         }
-
+        if (evt.equals(iconoInsertJugador)) {
+            abrirFrmUsuario();
+        }
+        if (evt.equals(iconoInsertDistribuidor)) {
+            abrirFrmDistribuidor();
+        }
     }
 
     @FXML
@@ -530,6 +544,60 @@ public class JuegoController implements Initializable {
         }
     }
 
+    private void abrirFrmUsuario() {
+        try {
+            //cargamos la vista FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Jugador.fxml"));
+            //instanciamos y cargamos el FXML en el padre
+            Parent root = loader.load();
+            //instanciamos al controlador Frm haciendo uso del nuevo método getController
+            JugadorController ctrFrmUsuario = loader.getController();
+            scene = new Scene(root, 1000, 600); //creamos la nueva escena que viene del padre
+            stage = new Stage();    //creamos la nueva ventana
+            stage.setTitle("USUARIOS"); //ponemos un título
+            stage.initModality(Modality.APPLICATION_MODAL);  //hacemos que la escena nueva tome el foco y no permita cambiarse de ventana
+            stage.setScene(scene); //establecemos la escena
+            this.ventanaPosicion(); //posicionamos la nueva ventana
+            this.cambiarOpacidad(0.5); //cambiamos la opacidad de la ventana anterior
+            stage.setResizable(false); //no permitimos que la ventana cambie de tamaño
+            stage.initStyle(StageStyle.UTILITY); //desactivamos maximinar y minimizar
+            stage.showAndWait(); //mostramos la nueva ventana y esperamos
+            //El programa continua en esta línea cuando la nueva ventana se cierre
+            this.cambiarOpacidad(1);
+            limpiarCampos();
+            cargarComboJugador();
+        } catch (IOException ex) {
+            System.err.println("Error en abrirFrmUsuario " + ex);
+        }
+    }
+
+    private void abrirFrmDistribuidor() {
+        try {
+            //cargamos la vista FXML
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Distribuidor.fxml"));
+            //instanciamos y cargamos el FXML en el padre
+            Parent root = loader.load();
+            //instanciamos al controlador Frm haciendo uso del nuevo método getController
+            DistribuidorController ctrFrmDistribuye = loader.getController();
+            scene = new Scene(root, 1000, 600); //creamos la nueva escena que viene del padre
+            stage = new Stage();    //creamos la nueva ventana
+            stage.setTitle("DSITRIBUIDORES"); //ponemos un título
+            stage.initModality(Modality.APPLICATION_MODAL);  //hacemos que la escena nueva tome el foco y no permita cambiarse de ventana
+            stage.setScene(scene); //establecemos la escena
+            this.ventanaPosicion(); //posicionamos la nueva ventana
+            this.cambiarOpacidad(0.5); //cambiamos la opacidad de la ventana anterior
+            stage.setResizable(false); //no permitimos que la ventana cambie de tamaño
+            stage.initStyle(StageStyle.UTILITY); //desactivamos maximinar y minimizar
+            stage.showAndWait(); //mostramos la nueva ventana y esperamos
+            //El programa continua en esta línea cuando la nueva ventana se cierre
+            this.cambiarOpacidad(1);
+            limpiarCampos();
+            cargarComboDistruidor();
+        } catch (IOException ex) {
+            System.err.println("Error en abrirFrmDistribuidor " + ex);
+        }
+    }
+
     private boolean esNumerico(String cadena) {
         boolean respuesta = false;
         try {
@@ -564,6 +632,17 @@ public class JuegoController implements Initializable {
         posicionxy[0] = myStage.getX() + (x - frmX);
         posicionxy[1] = myStage.getY() + (y - frmY);
         return posicionxy;
+    }
+
+    public void cambiarOpacidad(double valor) {
+        Stage myStage = (Stage) this.lblFormulario.getScene().getWindow();
+        myStage.setOpacity(valor);
+    }
+
+    public void ventanaPosicion() {
+        double[] posicion = obtenPosicionX_Y();
+        stage.setX(posicion[0] - 250);
+        stage.setY(posicion[1] - 50);
     }
 
 }
