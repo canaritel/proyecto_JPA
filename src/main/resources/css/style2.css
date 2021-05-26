@@ -1,0 +1,68 @@
+.search-box{
+    -fx-background-color:#FFFFFF;
+    -fx-background-radius: 100;
+}
+
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.search-button{
+    -fx-background-color: #828282;
+    -fx-background-radius: 30;
+}
+
+.right-bar{
+    -fx-background-color: #D3D3D3;
+}
+
+.shadow{
+    -fx-effect: dropShadow(three-pass-box,rgba(0,0,0,0.1), 10.0 , 0.0 , 0.0 ,10.0);
+}
+
+.comboBox{
+    -fx-background-color: rgba(255,255,255,0.3);
+    -fx-background-radius: 30;
+}
+
+.add-btn{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 100;
+}
+
+.free-delivery-card{
+    -fx-background-color: #D3D3D3;
+    -fx-background-radius: 30;
+}
+
+.shopping-online-card{
+    -fx-background-color: #BAEAC3;
+    -fx-background-radius: 30;
+}
+
+.fruit-item{
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 30;
+}
+
+
+/*
+.mouse-moved:hover{
+    -fx-background-color: #e4e4e4;
+    -fx-image-color: #d7d7d7;
+ }
+*/
+
+/*  color de una fila cuando en raton se encuentra sobre la misma  */
+.boton:hover { 
+    -fx-background-color: rgba(28, 183, 236, 0.25);
+    -fx-border-bottom: BLACK;
+    -fx-effect: dropshadow(one-pass-box, blue, 8, 0.0, 2, 0);
+    /*  -fx-background-color: #cc5522;*/
+}
+
+.imagenes:hover { 
+    -fx-background-color: rgba(28, 183, 236, 0.25);
+    -fx-border-bottom: BLACK;
+    -fx-effect: dropshadow(one-pass-box, blue, 8, 0.0, 2, 0);
+   }
