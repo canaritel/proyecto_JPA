@@ -440,7 +440,6 @@ public class JuegoController implements Initializable {
         if (objetoJuego == null) {
             objetoJuego = new Juego();
         }
-        //objetoJuego.setIdJuego();
         objetoJuego.setTitulo(textCampo1.getText().trim());
         objetoJuego.setSistemaOperativo(cmbSO.getValue());
         objetoJuego.setUsuario(cmbJugador.getValue());
@@ -537,9 +536,9 @@ public class JuegoController implements Initializable {
             if (Double.parseDouble(cadena) > 0) {
                 respuesta = true;
             }
-            if (Double.parseDouble(cadena) > 99999) {
+            if (Double.parseDouble(cadena) > 9999) {
                 respuesta = false;
-                camposPendientes = camposPendientes + "Debe introducir un precio menor a 99999€\n";
+                camposPendientes = camposPendientes + "Debe introducir un precio menor a 9999€\n";
             }
         } catch (NumberFormatException nfe) {
             return false;
