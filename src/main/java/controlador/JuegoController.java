@@ -374,14 +374,10 @@ public class JuegoController implements Initializable {
     private void editaJuego() {
         if (validarCampos()) {
             this.convertirObjeto();
-            //    if (!juegoDAO.existeAllJuego(objetoJuego)) {
             editarRegistroJuego();
             limpiarCampos();
             cancelarRegistro();
             actualizaListaJuegos();
-            //   } else {
-            //     MensajeFX.printTexto("Existe un registro con los mismos datos", "WARNING", obtenPosicionX_Y());
-            // }
         } else {
             MensajeFX.printTexto("Los siguientes campos están incorrectos:\n" + camposPendientes, "WARNING", obtenPosicionX_Y());
         }
