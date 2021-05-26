@@ -1,6 +1,7 @@
 package com.televoip.plantilla_fx;
 
 import controlador.SplashController;
+import dao.TestInicioJpaController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,6 +20,7 @@ public class App extends Application {
 
     private SplashController controlador;
     private Parent root;
+    private TestInicioJpaController inicioDAO;
     //Al declarar el objeto EMF antes de usarlo logramos que se reduzca el tiempo de carga la primera vez que se accede
     //Inicializamos nuestro objeto para la persistencia. Usamos los datos declarados dentro de nuestro fichero persistence.xml "IMPORTANTE PONER EL MISMO NOMBRE SINO DARÁ ERROR"
     private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("BD_Hibernate"); //creamos el objeto para conectar con nuestro sistema de Persistencia JPA
@@ -26,6 +28,10 @@ public class App extends Application {
     @Override
     public void init() {  //Primer método que se ejecuta al instanciar la clase
         System.out.println("Método init()");
+        if (inicioDAO == null) {
+            inicioDAO = new TestInicioJpaController(emf);
+        }
+        inicioDAO.getTestInicioCount(); //lo declaramos para poder inicializar el sistema de persistencia y cargue antes los siguientes procesos
     }
 
     @Override
