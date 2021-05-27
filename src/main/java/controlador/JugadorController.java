@@ -106,6 +106,7 @@ public class JugadorController implements Initializable {
         }
         inicializaTablaUsuario();
         textosUsuario();
+        limpiarCampos();
     }
 
     @FXML
@@ -140,6 +141,7 @@ public class JugadorController implements Initializable {
     @FXML
     private void posicionTabla(MouseEvent event) {
         obtenFilaUsuario();
+        desactivarCampos(false);
     }
 
     @FXML
@@ -159,6 +161,29 @@ public class JugadorController implements Initializable {
         if (evt.equals(iconReset)) {
             textBuscar.setText("");
             filtroLista("");
+        }
+    }
+
+    @FXML
+    private void accionTeclaPulsada(KeyEvent event) {
+        Object evt = event.getSource();  //capturamos el evento cuando se pulsa una tecla en los campos textfield
+        String caracter;
+        caracter = event.getCharacter(); //guardamos como string el caracter pulsado
+
+        if (evt.equals(textCampo1)) {      //si el evento es el campo nombre jugador
+            ValidaTextField.textoString(caracter, textCampo1, 100); //validamos el textfiled de tipo String con los parámetros caracter, textfield y tamaño máximo
+        }
+
+        if (evt.equals(textCampo2)) {       //si el  evento es campo apellidos
+            ValidaTextField.textoString(caracter, textCampo2, 100);
+        }
+
+        if (evt.equals(textCampo3)) {    //si el evento es el campo edad
+            ValidaTextField.textoInt(caracter, textCampo3, 3);
+        }
+
+        if (evt.equals(textCampo4)) {       //si el evento es el campo telefono
+            ValidaTextField.textoInt(caracter, textCampo4, 9);
         }
     }
 
@@ -228,14 +253,14 @@ public class JugadorController implements Initializable {
     }
 
     private void nuevoRegistro() {
-        //  if (textCampo1.isDisable()) {
-        //      limpiarCampos();
-        //  }
         btnGrabar.setVisible(true);
         btnCancelar.setVisible(true);
         btnEditar.setDisable(true);
         btnEliminar.setDisable(true);
         btnNuevo.setDisable(true);
+        limpiarCampos();
+        desactivarCampos(false);
+        objetoUsuario = new Usuario();
     }
 
     private void cancelarRegistro() {
@@ -264,7 +289,15 @@ public class JugadorController implements Initializable {
         textCampo3.setText("");
         textCampo4.setText("");
         textCampo5.setText("");
-        textCampo1.setDisable(false);
+        desactivarCampos(true);
+    }
+
+    private void desactivarCampos(boolean valor) {
+        textCampo1.setDisable(valor);
+        textCampo2.setDisable(valor);
+        textCampo3.setDisable(valor);
+        textCampo4.setDisable(valor);
+        textCampo5.setDisable(valor);
     }
 
     private boolean validarCampos() {
@@ -367,18 +400,22 @@ public class JugadorController implements Initializable {
     }
 
     private void editaUsuario() {
-        if (validarCampos()) {
-            convertirObjeto();
-            if (!usuarioDAO.existeUsuario(objetoUsuario)) {
-                editarRegistroUsuario();
-                limpiarCampos();
-                cancelarRegistro();
-                actualizaListaUsuarios();
+        if (!textCampo1.getText().isEmpty()) {
+            if (validarCampos()) {
+                convertirObjeto();
+                if (!usuarioDAO.existeUsuario(objetoUsuario)) {
+                    editarRegistroUsuario();
+                    limpiarCampos();
+                    cancelarRegistro();
+                    actualizaListaUsuarios();
+                } else {
+                    MensajeFX.printTexto("Existe un registro con los mismos datos", "WARNING", obtenPosicionX_Y());
+                }
             } else {
-                MensajeFX.printTexto("Existe un registro con los mismos datos", "WARNING", obtenPosicionX_Y());
+                MensajeFX.printTexto("Los siguientes campos están incorrectos:\n" + camposPendientes, "WARNING", obtenPosicionX_Y());
             }
         } else {
-            MensajeFX.printTexto("Los siguientes campos están incorrectos:\n" + camposPendientes, "WARNING", obtenPosicionX_Y());
+            MensajeFX.printTexto("Debe seleccionar un registro de la tabla", "WARNING", obtenPosicionX_Y());
         }
     }
 
@@ -418,29 +455,6 @@ public class JugadorController implements Initializable {
         posicionxy[0] = myStage.getX() + (x - frmX);
         posicionxy[1] = myStage.getY() + (y - frmY);
         return posicionxy;
-    }
-
-    @FXML
-    private void accionTeclaPulsada(KeyEvent event) {
-        Object evt = event.getSource();  //capturamos el evento cuando se pulsa una tecla en los campos textfield
-        String caracter;
-        caracter = event.getCharacter(); //guardamos como string el caracter pulsado
-
-        if (evt.equals(textCampo1)) {      //si el evento es el campo nombre jugador
-            ValidaTextField.textoString(caracter, textCampo1, 100); //validamos el textfiled de tipo String con los parámetros caracter, textfield y tamaño máximo
-        }
-
-        if (evt.equals(textCampo2)) {       //si el  evento es campo apellidos
-            ValidaTextField.textoString(caracter, textCampo2, 100);
-        }
-
-        if (evt.equals(textCampo3)) {    //si el evento es el campo edad
-            ValidaTextField.textoInt(caracter, textCampo3, 3);
-        }
-
-        if (evt.equals(textCampo4)) {       //si el evento es el campo telefono
-            ValidaTextField.textoInt(caracter, textCampo4, 9);
-        }
     }
 
 }

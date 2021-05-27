@@ -11,10 +11,10 @@ public class ValidaTextField {
             txtCampo.deletePreviousChar();       //eliminamos el último caracter
             txtCampo.end();                     //nos posicionamos al final del textfield
         } else if (palabra >= 'a') {            //si el caracter palabra es mayor/igual a 'a' es que es una letra del alfabeto
-            caracter = caracter.toUpperCase();  //la convertimos a mayúscula
-            txtCampo.deletePreviousChar();      //eliminamos el último caracter
-            txtCampo.setText(txtCampo.getText() + caracter);  //añadimos el texfield el caracter en mayúscula
-            txtCampo.end();
+           // caracter = caracter.toUpperCase();  //la convertimos a mayúscula
+           // txtCampo.deletePreviousChar();      //eliminamos el último caracter
+           // txtCampo.setText(txtCampo.getText() + caracter);  //añadimos el texfield el caracter en mayúscula
+           // txtCampo.end();
         }
     }
 

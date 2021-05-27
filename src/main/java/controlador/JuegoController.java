@@ -177,6 +177,7 @@ public class JuegoController implements Initializable {
     @FXML
     private void posicionTabla(MouseEvent event) {
         obtenFilaJuego();
+        desactivarCampos(false);
     }
 
     @FXML
@@ -320,6 +321,9 @@ public class JuegoController implements Initializable {
         btnEditar.setDisable(true);
         btnEliminar.setDisable(true);
         btnNuevo.setDisable(true);
+        limpiarCampos();
+        desactivarCampos(false);
+        objetoJuego = new Juego();
     }
 
     private void actualizaListaJuegos() {
@@ -385,14 +389,18 @@ public class JuegoController implements Initializable {
     }
 
     private void editaJuego() {
-        if (validarCampos()) {
-            this.convertirObjeto();
-            editarRegistroJuego();
-            limpiarCampos();
-            cancelarRegistro();
-            actualizaListaJuegos();
+        if (!textCampo1.getText().isEmpty()) {
+            if (validarCampos()) {
+                this.convertirObjeto();
+                editarRegistroJuego();
+                limpiarCampos();
+                cancelarRegistro();
+                actualizaListaJuegos();
+            } else {
+                MensajeFX.printTexto("Los siguientes campos están incorrectos:\n" + camposPendientes, "WARNING", obtenPosicionX_Y());
+            }
         } else {
-            MensajeFX.printTexto("Los siguientes campos están incorrectos:\n" + camposPendientes, "WARNING", obtenPosicionX_Y());
+            MensajeFX.printTexto("Debe seleccionar un registro de la tabla", "WARNING", obtenPosicionX_Y());
         }
     }
 
@@ -521,6 +529,16 @@ public class JuegoController implements Initializable {
         cmbSO.setPromptText("Elija opción");
         cmbJugador.setPromptText("Elija opción");
         cmbDistribuidor.setPromptText("Elija opción");
+        desactivarCampos(true);
+    }
+
+    private void desactivarCampos(boolean valor) {
+        textCampo1.setDisable(valor);
+        textCampo5.setDisable(valor);
+        dateFecha.setDisable(valor);
+        cmbSO.setDisable(valor);
+        cmbJugador.setDisable(valor);
+        cmbDistribuidor.setDisable(valor);
     }
 
     private void ventabaPopupUsuario() {

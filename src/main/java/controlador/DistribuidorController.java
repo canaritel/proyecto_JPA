@@ -108,6 +108,7 @@ public class DistribuidorController implements Initializable {
         }
         inicializaTablaDistribuidor();
         textosDistribuye();
+        limpiarCampos();
     }
 
     @FXML
@@ -142,6 +143,7 @@ public class DistribuidorController implements Initializable {
     @FXML
     private void posicionTabla(MouseEvent event) {
         obtenFilaDistruidor();
+        desactivarCampos(false);
         textCampo1.setDisable(true);
     }
 
@@ -255,14 +257,14 @@ public class DistribuidorController implements Initializable {
     }
 
     private void nuevoRegistro() {
-        if (textCampo1.isDisable()) {
-            limpiarCampos();
-        }
         btnGrabar.setVisible(true);
         btnCancelar.setVisible(true);
         btnEditar.setDisable(true);
         btnEliminar.setDisable(true);
         btnNuevo.setDisable(true);
+        limpiarCampos();
+        desactivarCampos(false);
+        objetoDistribuye = new Distribuye();
     }
 
     private void cancelarRegistro() {
@@ -291,7 +293,15 @@ public class DistribuidorController implements Initializable {
         textCampo3.setText("");
         textCampo4.setText("");
         textCampo5.setText("");
-        textCampo1.setDisable(false);
+        desactivarCampos(true);
+    }
+
+    private void desactivarCampos(boolean valor) {
+        textCampo1.setDisable(valor);
+        textCampo2.setDisable(valor);
+        textCampo3.setDisable(valor);
+        textCampo4.setDisable(valor);
+        textCampo5.setDisable(valor);
     }
 
     private boolean validarCampos() {
@@ -389,18 +399,22 @@ public class DistribuidorController implements Initializable {
     }
 
     private void editaDistribuidor() {
-        if (validarCampos()) {
-            convertirObjeto();
-            if (!distribuyeDAO.existeDistribuidorAll(objetoDistribuye)) {
-                editaRegistroDistribuidor();
-                limpiarCampos();
-                cancelarRegistro();
-                actualizaListaDistribuidor();
+        if (!textCampo1.getText().isEmpty()) {
+            if (validarCampos()) {
+                convertirObjeto();
+                if (!distribuyeDAO.existeDistribuidorAll(objetoDistribuye)) {
+                    editaRegistroDistribuidor();
+                    limpiarCampos();
+                    cancelarRegistro();
+                    actualizaListaDistribuidor();
+                } else {
+                    MensajeFX.printTexto("Existe un registro con los mismos datos", "WARNING", obtenPosicionX_Y());
+                }
             } else {
-                MensajeFX.printTexto("Existe un registro con los mismos datos", "WARNING", obtenPosicionX_Y());
+                MensajeFX.printTexto("Los siguientes campos están vacíos:\n" + camposPendientes, "WARNING", obtenPosicionX_Y());
             }
         } else {
-            MensajeFX.printTexto("Los siguientes campos están vacíos:\n" + camposPendientes, "WARNING", obtenPosicionX_Y());
+            MensajeFX.printTexto("Debe seleccionar un registro de la tabla", "WARNING", obtenPosicionX_Y());
         }
     }
 
