@@ -20,7 +20,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.stage.Stage;
 import javafx.util.Duration;
+import modelo.variablesPantalla;
 
 public class PrincipalController implements Initializable {
 
@@ -56,9 +58,11 @@ public class PrincipalController implements Initializable {
     private ImageView imageView;
     private Image fondoImagen;
     private VBox ventana;
+    private Stage stage;
     private RotateTransition rt;    //objeto para la animación
     private TranslateTransition tt; //objeto para la animación
     private FadeTransition ft;      //objeto para la animación
+    private int x, y;               //tamaño ventana actual
 
     /**
      * Initializes the controller class.
@@ -75,7 +79,11 @@ public class PrincipalController implements Initializable {
         Object evt = event.getSource();
 
         if (evt.equals(opcionListado)) {
-            System.out.println("estás en Listado");
+            moverImagen();
+            cargaVistaListado();
+            opcionListado.setStyle("-fx-background-color: #f3f3f3;");
+        } else {
+            opcionListado.setStyle(null);
         }
 
         if (evt.equals(opcionJugador)) {
@@ -136,6 +144,21 @@ public class PrincipalController implements Initializable {
         textJuegos.setEffect(null);
         textJugador.setEffect(null);
         textDistribuidor.setEffect(null);
+    }
+
+    private void cargaVistaListado() {
+        moverImagen();
+        tt.setOnFinished((e) -> {  //Cuando finaliza moverImagen cargamos la vista Listado
+            try {
+                this.calcularTamanio();
+                ventana = FXMLLoader.load(getClass().getResource("/fxml/Listado.fxml"));
+                vboxCentroPrincipal.getChildren().setAll(ventana);
+                vboxCentroPrincipal.setVisible(true);
+
+            } catch (IOException ex) {
+                Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        });
     }
 
     private void cargaVistaJugador() {
@@ -226,7 +249,14 @@ public class PrincipalController implements Initializable {
             tt.setCycleCount(1);
             tt.play();  //ejecutamos la animación
         }
+    }
 
+    public void calcularTamanio() {
+        stage = new Stage();
+        stage = (Stage) lblTituloJuego.getScene().getWindow();
+        y = (int) (vboxCentroPrincipal.getHeight());
+        x = (int) (vboxCentroPrincipal.getWidth());
+        variablesPantalla.valorX = x - 10;
     }
 
 }

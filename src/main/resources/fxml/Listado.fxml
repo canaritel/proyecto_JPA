@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseMoved="#accionMoverVentana" prefHeight="900.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.ListadoController">
+   <children>
+      <HBox maxHeight="120.0" maxWidth="1.7976931348623157E308" prefHeight="100.0" style="-fx-background-color: white;">
+         <children>
+            <Pane prefHeight="84.0" prefWidth="96.0" HBox.hgrow="ALWAYS" />
+            <HBox alignment="CENTER" prefHeight="75.0" prefWidth="367.0" styleClass="free-delivery-card" stylesheets="@../css/style2.css">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="214.0">
+                     <children>
+                        <Label prefHeight="29.0" prefWidth="199.0" text="Listado de Juegos" textFill="#878787">
+                           <font>
+                              <Font name="Cambria Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="20.0" prefWidth="196.0" text="Total número de juegos:" textFill="#878787">
+                           <font>
+                              <Font name="Cambria" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <Label fx:id="totalJuegosLabel" text="23">
+                     <font>
+                        <Font name="Segoe UI Semibold" size="46.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="3.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <Pane prefHeight="84.0" prefWidth="96.0" HBox.hgrow="ALWAYS" />
+            <HBox alignment="CENTER" prefHeight="75.0" prefWidth="465.0" styleClass="shopping-online-card" stylesheets="@../css/style2.css">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="100.0" prefWidth="203.0">
+                     <children>
+                        <Label prefHeight="29.0" prefWidth="190.0" text="Comprados Online" textFill="#878787">
+                           <font>
+                              <Font name="Cambria Bold" size="18.0" />
+                           </font>
+                        </Label>
+                        <Label prefHeight="20.0" prefWidth="185.0" text="Total precio en euros: " textFill="#878787">
+                           <font>
+                              <Font name="Cambria" size="15.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <Label fx:id="totalPrecioLabel" text="1523.56">
+                     <font>
+                        <Font name="Segoe UI Semibold" size="43.0" />
+                     </font>
+                     <HBox.margin>
+                        <Insets top="3.0" />
+                     </HBox.margin>
+                  </Label>
+               </children>
+            </HBox>
+            <Pane prefHeight="84.0" prefWidth="96.0" HBox.hgrow="ALWAYS" />
+         </children>
+         <VBox.margin>
+            <Insets top="20.0" />
+         </VBox.margin>
+      </HBox>
+      <HBox fx:id="ventanaParaScrollHBox" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: white;" VBox.vgrow="ALWAYS">
+         <children>
+            <ScrollPane fx:id="scroll" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="color-fondoblanco" stylesheets="@../css/style2.css" HBox.hgrow="ALWAYS">
+               <content>
+                  <GridPane fx:id="grid" prefHeight="0.0" prefWidth="0.0">
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" prefHeight="30.0" />
+                     </rowConstraints>
+                  </GridPane>
+               </content>
+               <HBox.margin>
+                  <Insets top="10.0" />
+               </HBox.margin>
+            </ScrollPane>
+         </children>
+      </HBox>
+   </children>
+</VBox>
