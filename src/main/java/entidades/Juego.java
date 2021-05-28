@@ -10,12 +10,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.xml.bind.annotation.XmlRootElement;
 
 /**
  *
@@ -23,6 +25,7 @@ import javax.persistence.TemporalType;
  */
 @Entity
 @Table(name = "juego")
+@XmlRootElement
 @NamedQueries({
     @NamedQuery(name = "Juego.findAll", query = "SELECT j FROM Juego j"),
     @NamedQuery(name = "Juego.findByIdJuego", query = "SELECT j FROM Juego j WHERE j.idJuego = :idJuego"),
@@ -52,6 +55,9 @@ public class Juego implements Serializable {
     @Basic(optional = false)
     @Column(name = "precio")
     private BigDecimal precio;
+    @Lob
+    @Column(name = "imagen")
+    private byte[] imagen;
     @JoinColumn(name = "distribuidor", referencedColumnName = "idDistribuidor")
     @ManyToOne(optional = false)
     private Distribuye distribuidor;
@@ -59,9 +65,6 @@ public class Juego implements Serializable {
     @ManyToOne(optional = false)
     private Usuario usuario;
 
-    /**
-     * Initializes the controller class.
-     */
     public Juego() {
     }
 
@@ -117,6 +120,14 @@ public class Juego implements Serializable {
         this.precio = precio;
     }
 
+    public byte[] getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(byte[] imagen) {
+        this.imagen = imagen;
+    }
+
     public Distribuye getDistribuidor() {
         return distribuidor;
     }
@@ -155,7 +166,7 @@ public class Juego implements Serializable {
 
     @Override
     public String toString() {
-        return "Juego{" + "titulo=" + titulo + ", sistemaOperativo=" + sistemaOperativo + ", fechaJuego=" + fechaJuego + ", precio=" + precio + ", distribuidor=" + distribuidor + ", usuario=" + usuario + '}';
+        return "entidades.Juego[ idJuego=" + idJuego + " ]";
     }
-
+    
 }

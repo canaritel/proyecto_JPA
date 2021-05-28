@@ -55,8 +55,6 @@ public class JuegoJpaController implements Serializable {
                 usuario = em.merge(usuario);
             }
             em.getTransaction().commit();
-        } catch (Exception e) {
-            System.err.println("error el crear registro Juego " + e);
         } finally {
             if (em != null) {
                 em.close();
@@ -192,7 +190,7 @@ public class JuegoJpaController implements Serializable {
             em.close();
         }
     }
-
+    
     public boolean existeJuego(Juego juego) {
         EntityManager em = getEntityManager();
         List<Juego> juegotmp = new ArrayList<>();
@@ -235,5 +233,5 @@ public class JuegoJpaController implements Serializable {
         }
         return respuesta;
     }
-
+    
 }

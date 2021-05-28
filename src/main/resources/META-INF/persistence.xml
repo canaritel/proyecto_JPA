@@ -6,6 +6,8 @@
     <class>entidades.Distribuye</class>
     <class>entidades.Usuario</class>
     <class>entidades.TestInicio</class>
+    <class>entidades.Distribuye_1</class>
+    <class>entidades.Usuario_1</class>
     <properties>
       <!-- "jdbc:mysql://PMYSQL114.dns-servicio.com:3306/6980251_hibernate?"; -->
       <!-- jdbc:mysql://localhost:3306/hibernate1?   -->

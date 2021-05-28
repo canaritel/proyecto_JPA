@@ -1,6 +1,7 @@
 package controlador;
 
 import entidades.Juego;
+import java.io.ByteArrayInputStream;
 import java.net.URL;
 import java.util.ResourceBundle;
 import javafx.fxml.FXML;
@@ -25,6 +26,7 @@ public class ItemController implements Initializable {
     private Label distribuyeLabel;
 
     private Juego juego;
+    private Image image;
 
     /**
      * Initializes the controller class.
@@ -41,8 +43,13 @@ public class ItemController implements Initializable {
         sistemaOperativoLabel.setText(juego.getSistemaOperativo());
         usuarioLabel.setText(juego.getUsuario().toString());
         distribuyeLabel.setText(juego.getDistribuidor().toString());
-        // Image image = new Image(getClass().getResourceAsStream(juego.getImgSrc()));
-        Image image = new Image(getClass().getResourceAsStream("/images/juego_resident-evil-2-remake.jpg"));
+
+        if (juego.getImagen() == null) {
+            image = new Image(getClass().getResourceAsStream("/images/juego_resident-evil-2-remake.jpg"));
+        } else {
+            //Image image = new Image(getClass().getResourceAsStream(juego.getImagen()));  
+            image = new Image(new ByteArrayInputStream(juego.getImagen()));
+        }
         img.setImage(image);
     }
 

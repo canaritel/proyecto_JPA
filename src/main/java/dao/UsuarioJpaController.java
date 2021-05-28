@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.RollbackException;
 import javax.persistence.TypedQuery;
 
 /**
@@ -56,8 +55,6 @@ public class UsuarioJpaController implements Serializable {
                 }
             }
             em.getTransaction().commit();
-        } catch (RollbackException ex) {
-            System.err.println("Error en la entrada de datos " + ex);
         } finally {
             if (em != null) {
                 em.close();

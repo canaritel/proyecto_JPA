@@ -7,6 +7,9 @@ import dao.exceptions.NonexistentEntityException;
 import entidades.Distribuye;
 import entidades.Juego;
 import entidades.Usuario;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
@@ -15,6 +18,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -35,6 +40,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.FileChooser;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -82,6 +88,10 @@ public class JuegoController implements Initializable {
     @FXML
     private Button btnCancelar;
     @FXML
+    private Button btnCargarImagen;
+    @FXML
+    private TextField archivoImagenLabel;
+    @FXML
     private ImageView iconoInsertJugador;
     @FXML
     private ImageView iconoInfoJugador;
@@ -109,6 +119,8 @@ public class JuegoController implements Initializable {
     private TableColumn<Juego, BigDecimal> colPrecioJuego;
     @FXML
     private TableColumn<Juego, LocalDate> colFechaJuego;
+    @FXML
+    private TableColumn<Juego, byte[]> colImagen;
 
     private Stage stage;
     private Scene scene;
@@ -126,6 +138,7 @@ public class JuegoController implements Initializable {
     private Juego objetoJuego;      //creamos un objeto de tipo Juego
     private Usuario objUsuario;
     private Distribuye objDistribuidor;
+    private FileInputStream fileInputStream;  //donde vamos almacenar la imagen a cargar
     //Inicializamos nuestro objeto para la persistencia. Usamos los datos declarados dentro de nuestro fichero persistence.xml "IMPORTANTE PONER EL MISMO NOMBRE SINO DARÁ ERROR"
     private final EntityManagerFactory emf = Persistence.createEntityManagerFactory("BD_Hibernate"); //creamos el objeto para conectar con nuestro sistema de Persistencia JPA
 
@@ -242,6 +255,34 @@ public class JuegoController implements Initializable {
         }
     }
 
+    @FXML
+    private void accionAniadeImagen(ActionEvent event) {
+        fileInputStream = null;
+        try {
+            FileChooser fileChooser = new FileChooser();
+            File file = fileChooser.showOpenDialog(btnCargarImagen.getScene().getWindow());
+
+            if (file != null) {
+                fileInputStream = new FileInputStream(file);
+                byte[] blob = fileInputStream.readAllBytes();
+                objetoJuego.setImagen(blob);
+                archivoImagenLabel.setText(file.getName());
+            }
+        } catch (FileNotFoundException ex) {
+            System.err.println("error en accionAniadeImagen " + ex.getMessage());
+        } catch (IOException ex) {
+            Logger.getLogger(JuegoController.class.getName()).log(Level.SEVERE, null, ex);
+        } finally {
+            try {
+                if (fileInputStream != null) {
+                    fileInputStream.close();
+                }
+            } catch (IOException ex) {
+                System.err.println("error en accionAniadeImagen " + ex.getMessage());
+            }
+        }
+    }
+
     private void inicializaTablaJuego() {
         //Los valores de los campos a referenciar no son los creados en la BD, son los que el Hibernate declara como private dentro de las entidades
         //sino hacemos lo anteriormente mencionado nos dará error al cargar los datos en la tabla
@@ -257,6 +298,8 @@ public class JuegoController implements Initializable {
         this.colPrecioJuego.setCellValueFactory(valorCol5a);
         PropertyValueFactory<Juego, LocalDate> valorCol6a = new PropertyValueFactory<>("fechaJuego");
         this.colFechaJuego.setCellValueFactory(valorCol6a);
+        PropertyValueFactory<Juego, byte[]> valorCol7a = new PropertyValueFactory<>("imagen");
+        this.colImagen.setCellValueFactory(valorCol7a);
 
         actualizaListaJuegos();
         tablaJuego.refresh();
@@ -311,6 +354,13 @@ public class JuegoController implements Initializable {
             cmbDistribuidor.getSelectionModel().select(objetoJuego.getDistribuidor());
             textCampo5.setText(String.valueOf(objetoJuego.getPrecio()));
             dateFecha.setValue(convertToLocalDateViaSqlDate(objetoJuego.getFechaJuego()));
+            if (objetoJuego.getImagen() != null) {
+                archivoImagenLabel.setDisable(true);
+                archivoImagenLabel.setText("Ya contiene imagen");
+            } else {
+                archivoImagenLabel.setDisable(false);
+                archivoImagenLabel.setText("Juego sin imagen..");
+            }
             cancelarRegistro();
         }
     }
@@ -529,6 +579,9 @@ public class JuegoController implements Initializable {
         cmbSO.setPromptText("Elija opción");
         cmbJugador.setPromptText("Elija opción");
         cmbDistribuidor.setPromptText("Elija opción");
+        archivoImagenLabel.setText("");
+        archivoImagenLabel.setDisable(true);
+        fileInputStream = null;
         desactivarCampos(true);
     }
 
@@ -539,6 +592,7 @@ public class JuegoController implements Initializable {
         cmbSO.setDisable(valor);
         cmbJugador.setDisable(valor);
         cmbDistribuidor.setDisable(valor);
+        btnCargarImagen.setDisable(valor);
     }
 
     private void ventabaPopupUsuario() {
