@@ -28,6 +28,7 @@ import javafx.stage.Stage;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import modelo.ValidaTextField;
+import modelo.variablesPantalla;
 
 /**
  * FXML Controller class
@@ -202,6 +203,7 @@ public class DistribuidorController implements Initializable {
         this.colPaisDistribuidor.setCellValueFactory(valorCol4);
 
         actualizaListaDistribuidor();
+        tablaDistribuidor.setPrefHeight(variablesPantalla.resolucionY);  //establecemos el alto de la tabla por defecto
         tablaDistribuidor.refresh();
         tablaDistribuidor.setItems(itemsDistribuye);
     }
@@ -368,7 +370,7 @@ public class DistribuidorController implements Initializable {
         if (objetoDistribuye == null) {
             objetoDistribuye = new Distribuye();
         }
-        objetoDistribuye.setIdDistribuidor(textCampo1.getText());
+        objetoDistribuye.setIdDistribuidor(textCampo1.getText().trim());
         objetoDistribuye.setDireccion(textCampo2.getText());
         objetoDistribuye.setCiudad(textCampo3.getText());
         objetoDistribuye.setPais(textCampo4.getText());

@@ -17,7 +17,7 @@
 
 <VBox xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.JuegoController">
    <children>
-      <SplitPane dividerPositions="0.312625250501002" focusTraversable="false" prefHeight="-1.0">
+      <SplitPane dividerPositions="0.312625250501002" focusTraversable="false" maxHeight="1.7976931348623157E308" prefHeight="-1.0">
          <items>
             <VBox maxHeight="1.7976931348623157E308" maxWidth="400.0" minWidth="350.0" styleClass="shadow" stylesheets="@../css/style2.css">
                <children>
@@ -180,19 +180,16 @@
                               </Button>
                            </children>
                         </VBox>
-                        <VBox layoutX="10.0" layoutY="10.0" prefHeight="62.0" prefWidth="350.0">
+                        <VBox layoutX="10.0" layoutY="10.0" prefHeight="62.0" prefWidth="350.0" styleClass="shadow">
                            <HBox.margin>
                               <Insets right="10.0" />
                            </HBox.margin>
                            <children>
-                              <TextField fx:id="archivoImagenLabel" editable="false" prefHeight="25.0" prefWidth="162.0" promptText="Nombre del archivo">
+                              <ImageView fx:id="imgImagen" fitHeight="76.0" fitWidth="68.0" pickOnBounds="true" preserveRatio="true">
                                  <VBox.margin>
-                                    <Insets left="10.0" top="37.0" />
+                                    <Insets left="12.0" top="11.0" />
                                  </VBox.margin>
-                                 <font>
-                                    <Font size="9.0" />
-                                 </font>
-                              </TextField>
+                              </ImageView>
                            </children>
                         </VBox>
                      </children>
@@ -221,7 +218,7 @@
                         </Button>
                      </children>
                      <VBox.margin>
-                        <Insets left="10.0" right="10.0" top="30.0" />
+                        <Insets left="10.0" right="10.0" top="50.0" />
                      </VBox.margin>
                   </HBox>
                   <HBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" nodeOrientation="LEFT_TO_RIGHT" spacing="15.0">
@@ -249,7 +246,7 @@
                   </HBox>
                </children>
             </VBox>
-            <TableView fx:id="tablaJuego" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#posicionTabla" prefHeight="2070.0" prefWidth="638.0" style="-fx-background-color: white;" styleClass="table-cell" stylesheets="@../css/styles_tablas.css">
+            <TableView fx:id="tablaJuego" onMouseClicked="#posicionTabla" style="-fx-background-color: white;" styleClass="table-cell" stylesheets="@../css/styles_tablas.css">
                <columns>
                   <TableColumn fx:id="colTituloJuego" maxWidth="600.0" minWidth="90.0" prefWidth="150.0" text="Título" />
                   <TableColumn fx:id="colSOJuego" maxWidth="400.0" minWidth="80.0" prefWidth="150.0" text="S.O." />

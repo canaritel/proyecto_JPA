@@ -44,9 +44,7 @@ public class ItemController implements Initializable {
         usuarioLabel.setText(juego.getUsuario().toString());
         distribuyeLabel.setText(juego.getDistribuidor().toString());
 
-        if (juego.getImagen() == null) {
-            image = new Image(getClass().getResourceAsStream("/images/juego_resident-evil-2-remake.jpg"));
-        } else {
+        if (juego.getImagen() != null) {
             image = new Image(new ByteArrayInputStream(juego.getImagen()));
         }
         img.setImage(image);

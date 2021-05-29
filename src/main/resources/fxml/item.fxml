@@ -16,13 +16,13 @@
       <String fx:value="shadow" />
    </styleClass>
    <children>
-      <VBox alignment="TOP_CENTER" prefHeight="371.0" prefWidth="225.0">
+      <VBox alignment="TOP_CENTER" prefHeight="371.0" prefWidth="233.0">
          <children>
             <HBox prefHeight="51.0" prefWidth="185.0">
                <children>
-                  <Label fx:id="tituloLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="191.0" text="Cherry" HBox.hgrow="ALWAYS">
+                  <Label fx:id="tituloLabel" alignment="CENTER" contentDisplay="CENTER" prefHeight="30.0" prefWidth="191.0" text="título juego" HBox.hgrow="ALWAYS">
                      <font>
-                        <Font name="Consolas Bold" size="24.0" />
+                        <Font name="Consolas Bold" size="22.0" />
                      </font>
                      <HBox.margin>
                         <Insets bottom="4.0" />

@@ -6,15 +6,18 @@ public class ValidaTextField {
 
     //Método para campos de tipo String, convertiendo a mayúscula y comprobando tamaño
     public static void textoString(String caracter, TextField txtCampo, int tamanio) {
+        if (" ".equals(caracter) && txtCampo.getLength() <= 1) {  //no permitimos espacios en blanco
+            txtCampo.deletePreviousChar(); //borramos si el caractere es un espacio en blanco
+        }
         char palabra = caracter.charAt(0);       //convertimos a tipo char el caracter String
         if (txtCampo.getLength() > tamanio) {    //comprobamos el tamaño del textfield es mayor al tamaño permitido
             txtCampo.deletePreviousChar();       //eliminamos el último caracter
             txtCampo.end();                     //nos posicionamos al final del textfield
         } else if (palabra >= 'a') {            //si el caracter palabra es mayor/igual a 'a' es que es una letra del alfabeto
-           // caracter = caracter.toUpperCase();  //la convertimos a mayúscula
-           // txtCampo.deletePreviousChar();      //eliminamos el último caracter
-           // txtCampo.setText(txtCampo.getText() + caracter);  //añadimos el texfield el caracter en mayúscula
-           // txtCampo.end();
+            // caracter = caracter.toUpperCase();  //la convertimos a mayúscula
+            // txtCampo.deletePreviousChar();      //eliminamos el último caracter
+            // txtCampo.setText(txtCampo.getText() + caracter);  //añadimos el texfield el caracter en mayúscula
+            // txtCampo.end();
         }
     }
 
@@ -34,8 +37,9 @@ public class ValidaTextField {
             } else if (palabra >= 'a' || palabra >= 'A') {          //si el caracter palabra el igual/mayor 'a' o 'A' es que es una letra
                 txtCampo.deletePreviousChar();                      //eliminamos el último caracter
                 txtCampo.end();
-            } else if (palabra == '.')
+            } else if (palabra == '.') {
                 txtCampo.end();
+            }
         }
     }
 

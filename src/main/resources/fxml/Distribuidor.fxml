@@ -14,7 +14,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="2000.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.DistribuidorController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.DistribuidorController">
    <children>
       <SplitPane dividerPositions="0.312625250501002" focusTraversable="false" prefHeight="-1.0">
          <items>
@@ -160,7 +160,7 @@
                   </HBox>
                </children>
             </VBox>
-            <TableView fx:id="tablaDistribuidor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#posicionTabla" prefHeight="2070.0" prefWidth="638.0" styleClass="table-cell" stylesheets="@../css/styles_tablas.css">
+            <TableView fx:id="tablaDistribuidor" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#posicionTabla" styleClass="table-cell" stylesheets="@../css/styles_tablas.css">
                <columns>
                   <TableColumn fx:id="colNombreDistribuidor" maxWidth="600.0" minWidth="100.0" prefWidth="150.0" text="Nombre" />
                   <TableColumn fx:id="colDireccionDistribuidor" maxWidth="800.0" minWidth="100.0" prefWidth="188.0" text="Dirección" />

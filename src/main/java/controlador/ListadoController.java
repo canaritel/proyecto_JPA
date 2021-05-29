@@ -3,6 +3,8 @@ package controlador;
 import dao.JuegoJpaController;
 import entidades.Juego;
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -108,7 +110,9 @@ public class ListadoController implements Initializable {
         for (Juego juego : listadoJuego) {
             valorJuegos = valorJuegos + juego.getPrecio().doubleValue();
         }
-        totalPrecioLabel.setText("€" + String.valueOf(valorJuegos));
+        BigDecimal formatNumber = new BigDecimal(valorJuegos);
+        formatNumber = formatNumber.setScale(2, RoundingMode.DOWN);   //solo permitimos 2 decimales sin redondeo
+        totalPrecioLabel.setText("€" + formatNumber);
     }
 
     private void calculaNumeroItems() {

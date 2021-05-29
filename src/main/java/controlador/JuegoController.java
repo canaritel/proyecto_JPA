@@ -7,6 +7,7 @@ import dao.exceptions.NonexistentEntityException;
 import entidades.Distribuye;
 import entidades.Juego;
 import entidades.Usuario;
+import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -34,6 +35,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -46,6 +48,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import modelo.MensajeFX;
 import modelo.ValidaTextField;
+import modelo.variablesPantalla;
 
 public class JuegoController implements Initializable {
 
@@ -88,7 +91,7 @@ public class JuegoController implements Initializable {
     @FXML
     private Button btnCargarImagen;
     @FXML
-    private TextField archivoImagenLabel;
+    private ImageView imgImagen;
     @FXML
     private ImageView iconoInsertJugador;
     @FXML
@@ -122,6 +125,7 @@ public class JuegoController implements Initializable {
 
     private Stage stage;
     private Scene scene;
+    private Image imageItem;
     private String camposPendientes; //para guardar los campos no validados
     private ObservableList<Juego> itemsJuegos;  //creamos una lista de tipo observableList, se usará para la tabla
     private ObservableList<Juego> itemsFiltro; //para guardar el resultado de los filtros de búsquedas
@@ -155,6 +159,7 @@ public class JuegoController implements Initializable {
             distribuyeDAO = new DistribuyeJpaController(emf);
         }
 
+        imageItem = new Image(getClass().getResourceAsStream("/images/Imagen-no-disponible.png"));
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yy");
         dateFecha.setShowWeekNumbers(false);
         inicializaTablaJuego();
@@ -271,7 +276,7 @@ public class JuegoController implements Initializable {
                 fileInputStream = new FileInputStream(file);
                 byte[] blob = fileInputStream.readAllBytes(); //almacenamos en nuestra variable byte[] la imagen cargada
                 objetoJuego.setImagen(blob);                  //asignamos en nuestro objeto la imagen
-                archivoImagenLabel.setText(file.getName());
+                mostrarImagen();
             }
         } catch (FileNotFoundException ex) {
             System.err.println("fichero no encontrado " + ex.getMessage());
@@ -307,6 +312,7 @@ public class JuegoController implements Initializable {
         this.colImagen.setCellValueFactory(valorCol7a);
 
         actualizaListaJuegos();
+        tablaJuego.setPrefHeight(variablesPantalla.resolucionY);  //establecemos el alto de la tabla por defecto
         tablaJuego.refresh();
         tablaJuego.setItems(itemsJuegos);
     }
@@ -360,11 +366,9 @@ public class JuegoController implements Initializable {
             textCampo5.setText(String.valueOf(objetoJuego.getPrecio()));
             dateFecha.setValue(convertToLocalDateViaSqlDate(objetoJuego.getFechaJuego()));
             if (objetoJuego.getImagen() != null) {
-                archivoImagenLabel.setDisable(true);
-                archivoImagenLabel.setText("Ya contiene imagen");
+                mostrarImagen();
             } else {
-                archivoImagenLabel.setDisable(false);
-                archivoImagenLabel.setText("Juego sin imagen..");
+                imgImagen.setImage(imageItem);
             }
             cancelarRegistro();
         }
@@ -398,7 +402,9 @@ public class JuegoController implements Initializable {
     private void inicializaCombo() {
         cmbSO.getItems().add("Windows 10/7");
         cmbSO.getItems().add("Mac OS");
-        cmbSO.getItems().add("Linux");
+        cmbSO.getItems().add("Playstation 4");
+        cmbSO.getItems().add("XBox One");
+        cmbSO.getItems().add("Nintendo Wii");
         cmbSO.getItems().add("Android");
         cmbSO.getItems().add("iOS");
     }
@@ -584,9 +590,8 @@ public class JuegoController implements Initializable {
         cmbSO.setPromptText("Elija opción");
         cmbJugador.setPromptText("Elija opción");
         cmbDistribuidor.setPromptText("Elija opción");
-        archivoImagenLabel.setText("");
-        archivoImagenLabel.setDisable(true);
         fileInputStream = null;
+        imgImagen.setImage(imageItem);
         desactivarCampos(true);
     }
 
@@ -715,10 +720,19 @@ public class JuegoController implements Initializable {
         myStage.setOpacity(valor);
     }
 
-    public void ventanaPosicion() {
+    private void ventanaPosicion() {
         double[] posicion = obtenPosicionX_Y();
         stage.setX(posicion[0] - 250);
         stage.setY(posicion[1] - 50);
     }
 
+    private Stage ventanaStage(Stage stage) {
+        stage = (Stage) this.lblFormulario.getScene().getWindow();
+        return stage;
+    }
+
+    private void mostrarImagen() {
+        Image image = new Image(new ByteArrayInputStream(objetoJuego.getImagen()));
+        imgImagen.setImage(image);
+    }
 }

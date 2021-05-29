@@ -14,11 +14,11 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="2000.0" maxWidth="1.7976931348623157E308" prefHeight="2000.0" stylesheets="@../css/styles_tablas.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.JugadorController">
+<VBox maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" stylesheets="@../css/styles_tablas.css" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.JugadorController">
    <children>
-      <SplitPane dividerPositions="0.312625250501002" focusTraversable="false" maxHeight="2000.0" prefHeight="-1.0">
+      <SplitPane dividerPositions="0.312625250501002" focusTraversable="false" maxHeight="1.7976931348623157E308" prefHeight="-1.0">
          <items>
-            <VBox maxHeight="2000.0" maxWidth="400.0" minWidth="325.0" styleClass="shadow" stylesheets="@../css/style2.css">
+            <VBox maxHeight="1.7976931348623157E308" maxWidth="400.0" minWidth="325.0" styleClass="shadow" stylesheets="@../css/style2.css">
                <children>
                   <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" nodeOrientation="LEFT_TO_RIGHT" prefHeight="30.0" prefWidth="219.0" style="-fx-background-color: transparent;">
                      <children>
@@ -160,7 +160,7 @@
                   </HBox>
                </children>
             </VBox>
-            <TableView fx:id="tablaUsuario" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#posicionTabla" prefHeight="2000.0" prefWidth="682.0" styleClass="table-cell" stylesheets="@../css/styles_tablas.css">
+            <TableView fx:id="tablaUsuario" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" onMouseClicked="#posicionTabla" styleClass="table-cell" stylesheets="@../css/styles_tablas.css">
                <columns>
                   <TableColumn fx:id="colNombreUsuario" maxWidth="800.0" minWidth="100.0" prefWidth="188.0" text="Nombre" />
                   <TableColumn fx:id="colApellidoUsuario" maxWidth="1000.0" minWidth="100.0" prefWidth="216.0" text="Apellidos" />

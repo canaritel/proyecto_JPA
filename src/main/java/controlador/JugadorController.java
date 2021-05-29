@@ -28,6 +28,7 @@ import javafx.stage.Stage;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 import modelo.ValidaTextField;
+import modelo.variablesPantalla;
 
 public class JugadorController implements Initializable {
 
@@ -199,6 +200,7 @@ public class JugadorController implements Initializable {
         this.colTelefonoUsuario.setCellValueFactory(valorCol4);
 
         actualizaListaUsuarios();
+        tablaUsuario.setPrefHeight(variablesPantalla.resolucionY);  //establecemos el alto de la tabla por defecto
         tablaUsuario.refresh();
         tablaUsuario.setItems(itemsUsuarios);
     }
