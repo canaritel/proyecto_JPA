@@ -18,8 +18,6 @@ import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -260,18 +258,25 @@ public class JuegoController implements Initializable {
         fileInputStream = null;
         try {
             FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Buscar Imagen");
+            // Agregamos filtros para facilitar la busqueda
+            fileChooser.getExtensionFilters().addAll(
+                    new FileChooser.ExtensionFilter("All Images", "*.*"),
+                    new FileChooser.ExtensionFilter("JPG", "*.jpg"),
+                    new FileChooser.ExtensionFilter("PNG", "*.png")
+            );
             File file = fileChooser.showOpenDialog(btnCargarImagen.getScene().getWindow());
-
+            //si se selecciona un archivo SI se ejecuta
             if (file != null) {
                 fileInputStream = new FileInputStream(file);
-                byte[] blob = fileInputStream.readAllBytes();
-                objetoJuego.setImagen(blob);
+                byte[] blob = fileInputStream.readAllBytes(); //almacenamos en nuestra variable byte[] la imagen cargada
+                objetoJuego.setImagen(blob);                  //asignamos en nuestro objeto la imagen
                 archivoImagenLabel.setText(file.getName());
             }
         } catch (FileNotFoundException ex) {
-            System.err.println("error en accionAniadeImagen " + ex.getMessage());
+            System.err.println("fichero no encontrado " + ex.getMessage());
         } catch (IOException ex) {
-            Logger.getLogger(JuegoController.class.getName()).log(Level.SEVERE, null, ex);
+            System.err.println("error de fichero " + ex.getMessage());
         } finally {
             try {
                 if (fileInputStream != null) {

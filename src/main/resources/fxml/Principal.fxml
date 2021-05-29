@@ -11,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane prefHeight="700.0" prefWidth="1190.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.PrincipalController">
+<BorderPane xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.PrincipalController">
    <top>
       <HBox alignment="CENTER_LEFT" prefHeight="47.0" prefWidth="1000.0" spacing="15.0" styleClass="white-background" stylesheets="@../css/styles.css" BorderPane.alignment="CENTER">
          <children>
@@ -224,11 +224,27 @@
             </HBox>
             <Label fx:id="lblVersion" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="versión 1.1" VBox.vgrow="ALWAYS">
                <VBox.margin>
-                  <Insets bottom="20.0" />
+                  <Insets top="-5.0" />
                </VBox.margin>
                <padding>
                   <Insets top="-30.0" />
                </padding>
+            </Label>
+            <Label fx:id="lblResolucion" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="572.0" maxWidth="1.7976931348623157E308" text="resolución">
+               <padding>
+                  <Insets top="-30.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="-5.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="lblMaquina" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="592.0" maxWidth="1.7976931348623157E308" text="Windows X">
+               <padding>
+                  <Insets top="-30.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="-5.0" />
+               </VBox.margin>
             </Label>
          </children>
          <BorderPane.margin>

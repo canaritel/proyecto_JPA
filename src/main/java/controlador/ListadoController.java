@@ -60,7 +60,6 @@ public class ListadoController implements Initializable {
     private void cargarListado() {
         try {
             listadoJuego = juegoDAO.findJuegoEntities();
-            System.out.println(listadoJuego.toString());
         } catch (Exception e) {
             System.err.println("error en cargarListado " + e);
         }

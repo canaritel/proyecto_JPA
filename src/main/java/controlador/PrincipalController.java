@@ -25,7 +25,7 @@ import javafx.util.Duration;
 import modelo.variablesPantalla;
 
 public class PrincipalController implements Initializable {
-
+    
     @FXML
     private VBox vboxCentroPrincipal;
     @FXML
@@ -54,7 +54,11 @@ public class PrincipalController implements Initializable {
     private Label textJuegos;
     @FXML
     private Label textDistribuidor;
-
+    @FXML
+    private Label lblResolucion;
+    @FXML
+    private Label lblMaquina;
+    
     private ImageView imageView;
     private Image fondoImagen;
     private VBox ventana;
@@ -72,12 +76,14 @@ public class PrincipalController implements Initializable {
         fondoImagen = new Image(getClass().getResourceAsStream("/images/java_programmer.gif")); //cargamos una imagen para mostrar y animar
         mostrarFondo();
         lblVersion.setText("Java: " + System.getProperty("java.version") + " / JavaFX: " + System.getProperty("javafx.version"));
+        lblResolucion.setText("Resolución: " + variablesPantalla.resolucionX + "x" + variablesPantalla.resolucionY);
+        lblMaquina.setText(variablesPantalla.sistemaOperativo());
     }
-
+    
     @FXML
     private void accionMouseSeleccion(MouseEvent event) {
         Object evt = event.getSource();
-
+        
         if (evt.equals(opcionListado)) {
             moverImagen();
             cargaVistaListado();
@@ -85,7 +91,7 @@ public class PrincipalController implements Initializable {
         } else {
             opcionListado.setStyle(null);
         }
-
+        
         if (evt.equals(opcionJugador)) {
             moverImagen();
             cargaVistaJugador();
@@ -93,7 +99,7 @@ public class PrincipalController implements Initializable {
         } else {
             opcionJugador.setStyle(null);
         }
-
+        
         if (evt.equals(opcionJuego)) {
             moverImagen();
             cargaVistaJuego();
@@ -101,7 +107,7 @@ public class PrincipalController implements Initializable {
         } else {
             opcionJuego.setStyle(null);
         }
-
+        
         if (evt.equals(opcionDistribuidor)) {
             moverImagen();
             cargarVistaDistribuidor();
@@ -110,12 +116,12 @@ public class PrincipalController implements Initializable {
             opcionDistribuidor.setStyle(null);
         }
     }
-
+    
     @FXML
     private void accionMouseDentro(MouseEvent event) {
         Object evt = event.getSource();
         girarImagen();
-
+        
         if (evt.equals(opcionListado)) {
             lblTituloListado.setEffect(new DropShadow(2.0, Color.BLACK));
             txtListado.setEffect(new DropShadow(1.5, Color.BLUE));
@@ -133,7 +139,7 @@ public class PrincipalController implements Initializable {
             textDistribuidor.setEffect(new DropShadow(1.5, Color.BLUE));
         }
     }
-
+    
     @FXML
     private void accionMouseFuera(MouseEvent event) {
         lblTituloListado.setEffect(null);
@@ -145,22 +151,22 @@ public class PrincipalController implements Initializable {
         textJugador.setEffect(null);
         textDistribuidor.setEffect(null);
     }
-
+    
     private void cargaVistaListado() {
         moverImagen();
         tt.setOnFinished((e) -> {  //Cuando finaliza moverImagen cargamos la vista Listado
             try {
-                this.calcularTamanio();
+                this.calcularTamanio(); //calculamos el tamaño de nuestra ventana horizontal
                 ventana = FXMLLoader.load(getClass().getResource("/fxml/Listado.fxml"));
                 vboxCentroPrincipal.getChildren().setAll(ventana);
                 vboxCentroPrincipal.setVisible(true);
-
+                
             } catch (IOException ex) {
                 Logger.getLogger(PrincipalController.class.getName()).log(Level.SEVERE, null, ex);
             }
         });
     }
-
+    
     private void cargaVistaJugador() {
         moverImagen();
         tt.setOnFinished((e) -> {  //Cuando finaliza moverImagen cargamos la vista
@@ -173,7 +179,7 @@ public class PrincipalController implements Initializable {
             }
         });
     }
-
+    
     private void cargarVistaDistribuidor() {
         moverImagen();
         tt.setOnFinished((e) -> {  //Cuando finaliza moverImagen cargamos la vista distribuidor
@@ -186,7 +192,7 @@ public class PrincipalController implements Initializable {
             }
         });
     }
-
+    
     private void cargaVistaJuego() {
         moverImagen();
         tt.setOnFinished((e) -> {  //Cuando finaliza moverImagen cargamos la vista Juego
@@ -199,7 +205,7 @@ public class PrincipalController implements Initializable {
             }
         });
     }
-
+    
     private void mostrarFondo() {
         // Añado imagen de fondo a la ventana
         imageView = new ImageView();
@@ -211,12 +217,12 @@ public class PrincipalController implements Initializable {
         vboxCentroPrincipal.setAlignment(Pos.CENTER);
         vboxCentroPrincipal.setVisible(true);
     }
-
+    
     private void girarImagen() {
         if (rt == null) {
             rt = new RotateTransition();
         }
-
+        
         if (ventana == null) {  //si el objeto ventana está vacío mostramos la animación
             //creamos animación de tipo rotate transición
             rt.setNode(imageView);
@@ -227,12 +233,12 @@ public class PrincipalController implements Initializable {
             rt.play();  //ejecutamos la animación
         }
     }
-
+    
     private void moverImagen() {
         if (tt == null) {
             tt = new TranslateTransition();
         }
-
+        
         if (ventana == null) {  //si el objeto ventana está vacío mostramos la animación    
             //creamos animación de translate transición
             tt.setNode(imageView);
@@ -250,13 +256,12 @@ public class PrincipalController implements Initializable {
             tt.play();  //ejecutamos la animación
         }
     }
-
+    
     public void calcularTamanio() {
         stage = new Stage();
         stage = (Stage) lblTituloJuego.getScene().getWindow();
-        y = (int) (vboxCentroPrincipal.getHeight());
         x = (int) (vboxCentroPrincipal.getWidth());
-        variablesPantalla.valorX = x - 10;
+        variablesPantalla.valorX = x; //almacenamos en la variable el tamaño actual del ancho de la ventana
     }
-
+    
 }

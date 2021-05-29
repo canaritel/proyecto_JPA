@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Stage;
+import modelo.variablesPantalla;
 
 public class SplashController implements Initializable {
 
@@ -25,6 +26,7 @@ public class SplashController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
+        variablesPantalla.calculaResolucionPantalla();
     }
 
     public void cargaPrincipal() {
@@ -32,7 +34,7 @@ public class SplashController implements Initializable {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/fxml/Principal.fxml")); //cargamos la vista FXML
             Parent root = loader.load();  //instanciamos y cargamos el FXML en el padre
             PrincipalController ctrPrincipal = loader.getController(); //instanciamos el controlador haciendo uso del nuevo método getController
-            scene = new Scene(root); //creamos la nueva escena
+            scene = new Scene(root, variablesPantalla.max_X, variablesPantalla.max_Y); //creamos la nueva escena y aplicacimos el tamaño de la ventana según la resolución permitida
             stage = new Stage();    //creamos la nueva ventana
             stage.setScene(scene); //establecemos la escena
             stage.setTitle("JavaFX JPA Hibernate"); //Insertamos un título a la aplicación
