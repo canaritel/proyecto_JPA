@@ -19,11 +19,13 @@ public class ItemController implements Initializable {
     @FXML
     private Label precioLabel;
     @FXML
-    private Label sistemaOperativoLabel;
-    @FXML
     private Label usuarioLabel;
     @FXML
     private Label distribuyeLabel;
+    @FXML
+    private Label tituloLabel2;
+    @FXML
+    private Label sistemaOperativoLabel;
 
     private Juego juego;
     private Image image;
@@ -39,6 +41,7 @@ public class ItemController implements Initializable {
     public void enviaDatos(Juego juego) {
         this.juego = juego;
         tituloLabel.setText(juego.getTitulo());
+        tituloLabel2.setText(juego.getTitulo());
         precioLabel.setText("€" + juego.getPrecio());
         sistemaOperativoLabel.setText(juego.getSistemaOperativo());
         usuarioLabel.setText(juego.getUsuario().toString());
@@ -47,6 +50,8 @@ public class ItemController implements Initializable {
         if (juego.getImagen() != null) {
             image = new Image(new ByteArrayInputStream(juego.getImagen()));
         }
+        img.setFitHeight(280);
+        img.setPreserveRatio(false);
         img.setImage(image);
     }
 

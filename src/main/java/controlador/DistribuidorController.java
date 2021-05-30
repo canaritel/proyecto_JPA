@@ -371,9 +371,9 @@ public class DistribuidorController implements Initializable {
             objetoDistribuye = new Distribuye();
         }
         objetoDistribuye.setIdDistribuidor(textCampo1.getText().trim());
-        objetoDistribuye.setDireccion(textCampo2.getText());
-        objetoDistribuye.setCiudad(textCampo3.getText());
-        objetoDistribuye.setPais(textCampo4.getText());
+        objetoDistribuye.setDireccion(textCampo2.getText().trim());
+        objetoDistribuye.setCiudad(textCampo3.getText().trim());
+        objetoDistribuye.setPais(textCampo4.getText().trim());
     }
 
     private void funcionCancelar() {

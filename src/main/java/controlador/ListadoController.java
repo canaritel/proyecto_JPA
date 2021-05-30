@@ -37,7 +37,7 @@ public class ListadoController implements Initializable {
     private GridPane grid;
 
     private final int anchoItem = 245;   //ancho del item que insertamos en la ventana
-    private int x;                       //ancho del item
+    private int ventanaAncho;            //ancho actual de la ventana
     private int columnaItem;             //número de columna a mostrar en la ventana
     private List<Juego> listadoJuego;    //la lista donde almacenamos los datos leidos
     private JuegoJpaController juegoDAO; //creamos un objeto para conectar con nuestros métodos DAO
@@ -68,8 +68,8 @@ public class ListadoController implements Initializable {
     }
 
     private void mostrarListado() {
-        int column = 0;
-        int row = 1;
+        int columna = 0;
+        int fila = 1;
         try {
             for (int i = 0; i < listadoJuego.size(); i++) {
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -78,22 +78,22 @@ public class ListadoController implements Initializable {
 
                 ItemController itemController = fxmlLoader.getController();
                 itemController.enviaDatos(listadoJuego.get(i));
-                if (column == columnaItem) {
-                    column = 0;
-                    row++;
+                if (columna == columnaItem) {
+                    columna = 0;
+                    fila++;
                 }
 
-                grid.add(anchorPane, column++, row); //añadimos (child,column,row)
-                //set grid ancho
+                grid.add(anchorPane, columna++, fila); //añadimos (hijo,fila, columna)
+                //seteamos grid ancho
                 grid.setMinWidth(Region.USE_COMPUTED_SIZE);
                 grid.setPrefWidth(Region.USE_COMPUTED_SIZE);
                 grid.setMaxWidth(Region.USE_PREF_SIZE);
 
-                //set grid alto
+                //seteamos grid alto
                 grid.setMinHeight(Region.USE_COMPUTED_SIZE);
                 grid.setPrefHeight(Region.USE_COMPUTED_SIZE);
                 grid.setMaxHeight(Region.USE_PREF_SIZE);
-                grid.autosize();
+                //grid.autosize();
                 GridPane.setMargin(anchorPane, new Insets(10)); //margen entre los item grid
             }
         } catch (IOException e) {
@@ -111,23 +111,23 @@ public class ListadoController implements Initializable {
             valorJuegos = valorJuegos + juego.getPrecio().doubleValue();
         }
         BigDecimal formatNumber = new BigDecimal(valorJuegos);
-        formatNumber = formatNumber.setScale(2, RoundingMode.DOWN);   //solo permitimos 2 decimales sin redondeo
+        formatNumber = formatNumber.setScale(2, RoundingMode.CEILING);   //solo permitimos 2 decimales
         totalPrecioLabel.setText("€" + formatNumber);
     }
 
     private void calculaNumeroItems() {
-        columnaItem = variablesPantalla.valorX / anchoItem;
+        columnaItem = (int) variablesPantalla.valorX / anchoItem;
     }
 
     private void calculaAnchoVentana() {
-        x = (int) (scroll.getWidth());
+        ventanaAncho = (int) (scroll.getWidth());
     }
 
     @FXML
     private void accionMoverVentana(MouseEvent event) {
         calculaAnchoVentana();
-        if (x != variablesPantalla.valorX) {
-            variablesPantalla.valorX = x;
+        if (ventanaAncho != variablesPantalla.valorX) {
+            variablesPantalla.valorX = ventanaAncho;
             calculaNumeroItems();
             grid.getChildren().clear();
             mostrarListado();

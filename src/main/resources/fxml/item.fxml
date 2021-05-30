@@ -40,9 +40,21 @@
             </ImageView>
             <HBox prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
+                  <Label fx:id="tituloLabel2" alignment="CENTER" contentDisplay="CENTER" prefHeight="21.0" prefWidth="210.0" text="Título">
+                     <HBox.margin>
+                        <Insets left="9.0" top="16.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="Consolas Bold" size="17.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox layoutX="10.0" layoutY="341.0" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+               <children>
                   <Label text="S.O.">
                      <HBox.margin>
-                        <Insets left="20.0" top="10.0" />
+                        <Insets left="20.0" />
                      </HBox.margin>
                      <font>
                         <Font name="Cambria Bold" size="24.0" />
@@ -50,7 +62,7 @@
                   </Label>
                   <Label fx:id="sistemaOperativoLabel" text="Windows 10">
                      <HBox.margin>
-                        <Insets left="9.0" top="16.0" />
+                        <Insets left="9.0" top="7.0" />
                      </HBox.margin>
                      <font>
                         <Font name="Consolas" size="17.0" />
