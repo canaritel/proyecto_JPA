@@ -410,7 +410,6 @@ public class JuegoController implements Initializable {
     }
 
     private void cargarComboJugador() {
-        //resultUsuario = usuarioDAO.ListUsuarioByNombre();
         resultUsuario = usuarioDAO.findUsuarioEntities();
         if (obsUsuarios == null) {
             obsUsuarios = FXCollections.observableList(resultUsuario);
@@ -422,7 +421,6 @@ public class JuegoController implements Initializable {
     }
 
     private void cargarComboDistruidor() {
-        //resultDistribuye = distribuyeDAO.ListDistribuidorByNombre();
         resultDistribuye = distribuyeDAO.findDistribuyeEntities();
         if (obsDistribuye == null) {
             obsDistribuye = FXCollections.observableList(resultDistribuye);
