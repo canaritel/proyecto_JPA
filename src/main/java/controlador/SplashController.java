@@ -36,7 +36,9 @@ public class SplashController implements Initializable {
             PrincipalController ctrPrincipal = loader.getController(); //instanciamos el controlador haciendo uso del nuevo método getController
             scene = new Scene(root, variablesPantalla.max_X, variablesPantalla.max_Y); //creamos la nueva escena y aplicacimos el tamaño de la ventana según la resolución permitida
             stage = new Stage();    //creamos la nueva ventana
-            stage.setScene(scene); //establecemos la escena
+            stage.setMinWidth(850); //minimo tamaño de ancho ventana
+            stage.setMinHeight(730);//mínimo tamaño de alto ventaba
+            stage.setScene(scene);  //establecemos la escena
             stage.setTitle("JavaFX JPA Hibernate"); //Insertamos un título a la aplicación
             stage.getIcons().add(new Image(getClass().getResourceAsStream("/images/javafx3.png")));  //Cargamos el icono en la ventana
             stage.setResizable(true); //permitimos que la ventana cambie de tamaño

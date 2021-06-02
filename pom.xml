@@ -311,4 +311,5 @@
             </plugin>
         </plugins>
     </build>
+    <name>Plantilla_FX_JPA_EclipseLink</name>
 </project>
