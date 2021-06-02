@@ -1,6 +1,6 @@
 # proyecto_JPA
 
-Aplicación desarrollada en Java 11 , JavaFX 11.0.2 y Maven.
+Aplicación desarrollada en Java 11 , JavaFX 15.0.2 y Maven.
 Diseño de un ORM en JPA con EclipseLinkJPA 2.1.
 
 Entorno IDE OpenBeans , http://www.openbeans.org/
