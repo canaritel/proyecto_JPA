@@ -4,9 +4,11 @@ Aplicación desarrollada en Java 11 , JavaFX 15.0.2 y Maven.
 Diseño de un ORM en JPA con EclipseLinkJPA 2.1.
 En la otra Branch puedes ver el mismo proyecto con JPA hacia Hibertante 4.1.
 
+Vídeo donde hago una pequeña comparación y test de velocidad entre Hibernate vs EclipseLink: https://youtu.be/C6Wdp7QZ8ck
+
 Entorno IDE OpenBeans , http://www.openbeans.org/
 
-Esta aplciación hace uso de un ORM con conexión a BD MySQL hosteada en Hostalia. El IDE OpenBeans nos permite facilmente crear la persistencia, Pojo entidades y métodos JPA Crud.
+Esta aplicación hace uso de un ORM con conexión a BD MySQL hosteada en Hostalia. El IDE OpenBeans nos permite facilmente crear la persistencia, Pojo entidades y métodos JPA Crud.
 ![image](https://user-images.githubusercontent.com/57302177/119737338-04738f80-be77-11eb-974b-5b26784395e0.png)
 
 
