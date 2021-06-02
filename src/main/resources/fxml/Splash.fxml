@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane id="AnchorPane" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.SplashController">
+   <children>
+      <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="400.0" prefWidth="600.0">
+         <children>
+            <ImageView fx:id="imagen" fitHeight="301.0" fitWidth="428.0" layoutX="79.0" layoutY="50.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/logo%20javafx2.png" />
+               </image></ImageView>
+            <ProgressBar layoutX="193.0" layoutY="351.0" prefWidth="200.0" />
+            <Label fx:id="lblTexto" alignment="CENTER" contentDisplay="CENTER" layoutX="233.0" layoutY="322.0" prefHeight="27.0" prefWidth="123.0" stylesheets="@../css/styles.css" text="Cargando..">
+               <font>
+                  <Font name="Consolas" size="18.0" />
+               </font>
+               <styleClass>
+                  <String fx:value="round-layout" />
+                  <String fx:value="white-background" />
+               </styleClass>
+            </Label>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>

@@ -1,0 +1,78 @@
+.white-background{
+    -fx-background-color: #fff;
+}
+
+.transparent{
+    -fx-background-color: rgba(0,0,0,0);
+}
+
+.round-layout{
+    -fx-border-radius: 40;
+    -fx-border-color: #d7d7d7;  
+}
+
+.selected{
+    -fx-background-color: #f3f3f3;
+}
+
+.mouse-moved:hover{
+    -fx-background-color: #e4e4e4;
+    -fx-image-color: #d7d7d7;
+ }
+
+/*******************************************************************************
+ *                                                                             *
+ * Separators		                   	                                       *
+ *                                                                             *
+ ******************************************************************************/ 
+/*
+.separator {
+	-fx-padding: 16 -16 16 -16;
+}
+
+/*******************************************************************************
+ *                                                                             *
+ * Text, Text field & Text area                                                *
+ *                                                                             *
+ ******************************************************************************/
+/*
+.text {
+	-fx-font-smoothing-type: gray;
+}
+
+.text-area, .text-field {
+	-fx-background-color: transparent;
+	-fx-background-radius: 2.0;
+	-fx-padding: 0.5em 0.5em 0.5em 0.1em;
+	-fx-border-color: -swatch-grey;
+	-fx-border-width: 0 0 2 0;
+	-fx-prompt-text-fill: derive(-dark, 50.0%);
+	-fx-highlight-fill: rgb(94.0, 203.0, 234.0);
+}
+/*
+.text-area .text, .text-field>*>.text {
+/*	-fx-effect: null; */
+
+/*	-fx-fill: -dark;  
+}  */
+/*
+.text-area {
+	-fx-padding: 0.15em;
+}
+*/
+/*
+.text-area .content {
+	-fx-padding: 0.7em;
+	-fx-border-width: 0.0;
+	-fx-background-color: transparent;
+}
+
+.text-area:focused  .content {
+	-fx-background-color: transparent;
+}
+
+.text-area:focused, .text-field:focused {
+	-fx-border-color: -swatch-500;
+}
+
+*/

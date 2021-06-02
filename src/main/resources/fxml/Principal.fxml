@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controlador.PrincipalController">
+   <top>
+      <HBox alignment="CENTER_LEFT" prefHeight="47.0" prefWidth="1000.0" spacing="15.0" styleClass="white-background" stylesheets="@../css/styles.css" BorderPane.alignment="CENTER">
+         <children>
+            <Label alignment="CENTER" prefHeight="36.0" prefWidth="180.0" text="Mis Videojuegos" textFill="#ff5056">
+               <font>
+                  <Font name="Consolas Bold" size="20.0" />
+               </font>
+            </Label>
+            <Separator maxHeight="-Infinity" orientation="VERTICAL" prefHeight="21.0" prefWidth="6.0" />
+            <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="30.0" prefWidth="310.0" HBox.hgrow="ALWAYS">
+               <children>
+                  <Label alignment="CENTER" prefHeight="30.0" prefWidth="307.0" text="Practica para AED v.1.1" textFill="#2f4c9e">
+                     <font>
+                        <Font name="Consolas Bold" size="20.0" />
+                     </font>
+                  </Label>
+               </children>
+            </HBox>
+            <Pane prefHeight="65.0" prefWidth="237.0" HBox.hgrow="ALWAYS" />
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+               <children>
+                  <Label contentDisplay="CENTER" prefHeight="41.0" prefWidth="158.0" text="Antonio González B.">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="60.0" fitWidth="60.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/solo%20foto%20mia.png" />
+                     </image>
+                     <HBox.margin>
+                        <Insets top="5.0" />
+                     </HBox.margin>
+                  </ImageView>
+               </children>
+            </HBox>
+         </children>
+         <padding>
+            <Insets left="15.0" right="15.0" />
+         </padding>
+      </HBox>
+   </top>
+   <left>
+      <VBox maxHeight="1.7976931348623157E308" prefWidth="209.0" spacing="30.0" styleClass="white-background" stylesheets="@../css/styles.css" BorderPane.alignment="CENTER">
+         <children>
+            <VBox prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label fx:id="lblTituloListado" contentDisplay="CENTER" prefHeight="41.0" prefWidth="158.0" text="Listado">
+                     <font>
+                        <Font name="Consolas Bold" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" top="20.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox fx:id="opcionListado" alignment="CENTER_LEFT" onMouseEntered="#accionMouseDentro" onMouseExited="#accionMouseFuera" onMousePressed="#accionMouseSeleccion" prefHeight="50.0" prefWidth="200.0" styleClass="mouse-moved" stylesheets="@../css/styles.css">
+                     <children>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons8_bad_piggies_50px.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label fx:id="txtListado" contentDisplay="RIGHT" text="Listado de Juegos" textFill="#404040f2">
+                           <font>
+                              <Font name="Segoe Print Bold" size="14.0" />
+                           </font>
+                           <padding>
+                              <Insets left="5.0" />
+                           </padding>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+                  <Separator prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </Separator>
+                  <Label fx:id="lblTituloJugador" contentDisplay="CENTER" prefHeight="41.0" prefWidth="158.0" text="Jugadores">
+                     <font>
+                        <Font name="Consolas Bold" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" top="15.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox fx:id="opcionJugador" alignment="CENTER_LEFT" onMouseEntered="#accionMouseDentro" onMouseExited="#accionMouseFuera" onMousePressed="#accionMouseSeleccion" prefHeight="50.0" prefWidth="200.0" styleClass="mouse-moved" stylesheets="@../css/styles.css">
+                     <children>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icono_alumno2.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label fx:id="textJugador" contentDisplay="RIGHT" text="Gestión Jugador" textFill="#404040f2">
+                           <font>
+                              <Font name="Segoe Print Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+                  <Separator prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </Separator>
+                  <Label fx:id="lblTituloDistribuidor" contentDisplay="CENTER" prefHeight="41.0" prefWidth="158.0" text="Distribuidores">
+                     <font>
+                        <Font name="Consolas Bold" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" top="15.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox fx:id="opcionDistribuidor" alignment="CENTER_LEFT" onMouseEntered="#accionMouseDentro" onMouseExited="#accionMouseFuera" onMousePressed="#accionMouseSeleccion" prefHeight="50.0" prefWidth="200.0" styleClass="mouse-moved" stylesheets="@../css/styles.css">
+                     <children>
+                        <ImageView fitHeight="40.0" fitWidth="40.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons8_epic_games_50px.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label fx:id="textDistribuidor" contentDisplay="RIGHT" text="Gestión Distribuidor" textFill="#404040f2">
+                           <font>
+                              <Font name="Segoe Print Bold" size="14.0" />
+                           </font>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets top="5.0" />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+                  <Separator prefWidth="200.0">
+                     <VBox.margin>
+                        <Insets top="15.0" />
+                     </VBox.margin>
+                  </Separator>
+                  <Label fx:id="lblTituloJuego" contentDisplay="CENTER" prefHeight="41.0" prefWidth="158.0" text="Juegos">
+                     <font>
+                        <Font name="Consolas Bold" size="18.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="10.0" top="15.0" />
+                     </VBox.margin>
+                  </Label>
+                  <HBox fx:id="opcionJuego" alignment="CENTER_LEFT" onMouseEntered="#accionMouseDentro" onMouseExited="#accionMouseFuera" onMousePressed="#accionMouseSeleccion" prefHeight="50.0" prefWidth="200.0" styleClass="mouse-moved" stylesheets="@../css/styles.css">
+                     <children>
+                        <ImageView fitHeight="40.0" fitWidth="55.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../images/icons8_joystick_50px.png" />
+                           </image>
+                           <HBox.margin>
+                              <Insets top="5.0" />
+                           </HBox.margin>
+                        </ImageView>
+                        <Label fx:id="textJuegos" contentDisplay="RIGHT" text="Gestión Juegos" textFill="#404040f2">
+                           <font>
+                              <Font name="Segoe Print Bold" size="14.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="5.0" />
+                           </HBox.margin>
+                        </Label>
+                     </children>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </HBox>
+               </children>
+            </VBox>
+            <Pane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" VBox.vgrow="ALWAYS" />
+            <HBox alignment="BOTTOM_CENTER" prefHeight="50.0" prefWidth="200.0">
+               <children>
+                  <ImageView fitHeight="93.0" fitWidth="70.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/javafx3.png" />
+                     </image>
+                  </ImageView>
+               </children>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+            <Label fx:id="lblVersion" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308" text="versión 1.1" VBox.vgrow="ALWAYS">
+               <VBox.margin>
+                  <Insets top="-5.0" />
+               </VBox.margin>
+               <padding>
+                  <Insets top="-30.0" />
+               </padding>
+            </Label>
+            <Label fx:id="lblResolucion" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="572.0" maxWidth="1.7976931348623157E308" text="resolución">
+               <padding>
+                  <Insets top="-30.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets top="-5.0" />
+               </VBox.margin>
+            </Label>
+            <Label fx:id="lblMaquina" alignment="CENTER" contentDisplay="CENTER" layoutX="10.0" layoutY="592.0" maxWidth="1.7976931348623157E308" text="Windows X">
+               <padding>
+                  <Insets top="-30.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets bottom="10.0" top="-5.0" />
+               </VBox.margin>
+            </Label>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets top="10.0" />
+         </padding>
+      </VBox>
+   </left>
+   <center>
+      <VBox fx:id="vboxCentroPrincipal" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" style="-fx-background-color: white;" BorderPane.alignment="CENTER">
+         <padding>
+            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+         </padding></VBox>
+   </center>
+</BorderPane>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+  <persistence-unit name="BD_Hibernate" transaction-type="RESOURCE_LOCAL">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <class>entidades.Juego</class>
+    <class>entidades.Distribuye</class>
+    <class>entidades.Usuario</class>
+    <class>entidades.TestInicio</class>
+    <class>entidades.Distribuye_1</class>
+    <class>entidades.Usuario_1</class>
+    <properties>
+      <!-- jdbc:mysql://localhost:3306/hibernate1?   -->
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://PMYSQL114.dns-servicio.com:3306/6980251_hibernate?zeroDateTimeBehavior=convertToNull&amp;serverTimezone=UTC&amp;useSSL=false"/>
+      <property name="javax.persistence.jdbc.user" value="root_jpa"/>
+      <property name="javax.persistence.jdbc.driver" value="org.gjt.mm.mysql.Driver"/>
+      <property name="javax.persistence.jdbc.password" value="1q2w3e4r5t.."/>
+      <property name="hibernate.show.sql" value="false"/>   <!--Mostramos el SQL en la consola -->
+      </properties>
+  </persistence-unit>
+</persistence>
