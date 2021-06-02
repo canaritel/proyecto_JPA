@@ -2,6 +2,7 @@
 
 Aplicación desarrollada en Java 11 , JavaFX 15.0.2 y Maven.
 Diseño de un ORM en JPA con EclipseLinkJPA 2.1.
+En la otra Branch puedes ver el mismo proyecto con JPA hacia Hibertante 4.1.
 
 Entorno IDE OpenBeans , http://www.openbeans.org/
 
