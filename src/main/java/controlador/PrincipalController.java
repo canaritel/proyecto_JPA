@@ -78,6 +78,7 @@ public class PrincipalController implements Initializable {
         lblVersion.setText("Java: " + System.getProperty("java.version") + " / JavaFX: " + System.getProperty("javafx.version"));
         lblResolucion.setText("Resolución: " + variablesPantalla.resolucionX + "x" + variablesPantalla.resolucionY);
         lblMaquina.setText(variablesPantalla.sistemaOperativo());
+        System.out.println(System.getProperty("java.classpath"));
     }
     
     @FXML

@@ -16,6 +16,7 @@
       <property name="javax.persistence.jdbc.driver" value="org.gjt.mm.mysql.Driver"/>
       <property name="javax.persistence.jdbc.password" value="1q2w3e4r5t.."/>
       <property name="hibernate.show.sql" value="true"/> <!-- Mostramos el SQL en la consola -->
+      <property name="hibernate.dialect" value="org.hibernate.dialect.HSQLDialect"/>
     </properties>
   </persistence-unit>
 </persistence>

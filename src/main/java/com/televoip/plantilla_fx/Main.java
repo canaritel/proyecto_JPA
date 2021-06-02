@@ -2,7 +2,7 @@ package com.televoip.plantilla_fx;
 
 /**
  *
- * @author Antonio González Bonilla / Proyecto AED / https://github.com/canaritel/proyecto_JPA.git
+ * @author Antonio Gonzalez Bonilla / https://github.com/canaritel/proyecto_JPA.git
  */
 public class Main {
 
